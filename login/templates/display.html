@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+  <head>
+    <meta  charset="utf-8"/>
+    <link rel="shortcut icon" href= "{% static 'logo.png'%}" />
+    <title>Litindia</title>
+    <link rel="stylesheet" href="{% static 'skeleton.css' %}" >
+    <link rel="stylesheet" href="{% static 'normalize.css' %}" >
+    <link rel="stylesheet" href="{% static 'myStyle.css' %}" >
+    <script type="text/javascript" src="{% static 'myScript.js' %}"></script>
+</head>
+<body class="container">
+    <br>
+    {% if img_list %}
+        <button class = "button button-primary" onclick="printAll({{ img_list }})" style="width: 100%">Print All Certificates</button>
+    {% endif %}
+    <br>
+
+    {%for image in img_list%}
+        <div class="gallery">
+            <img id="{{ image }}" src="static/certificate/{{ image }}" alt="{{ image }}">
+            <center>
+                <div>{{ image }}</div>
+                <button class = "button button-primary" onclick="printImg('{{ image }}')" style="width: 48%">Print</button>
+
+                <button class = "button button-primary" onclick="display('{{ image }}')" style="width: 48%; ">View</button></a>
+            </center>
+        </div>
+    {%endfor%}
+
+    <div style="clear: both"></div>
+
+    <!-- The Modal for Display Image-->
+    <div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+    </div>
+
+    <ul>
+        {% for message in msg %}
+            <li style="color: red">{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
